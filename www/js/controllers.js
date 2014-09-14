@@ -1,9 +1,13 @@
 angular.module('Booze.controllers', [])
 
-.controller('MainCtrl', function($scope, $cordovaDeviceMotion, $cordovaDialogs, ShakeDetection) {
+.controller('MainCtrl', function($scope, ShakeDetection) {
+
+  $scope.cocktails = {};
 
   function myCallBack() {
-    $cordovaDialogs.alert('It shaked!');
+    $http.get('lib/data/cocktails.json').success (function(data){
+      $scope.cocktails.random = data[Math.floor(Math.random() * data.length)];
+    });
   }
 
   $scope.watchShake = function() {

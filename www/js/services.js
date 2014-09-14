@@ -1,9 +1,9 @@
-angular.module('Booze.services', [])
+var services = angular.module('Booze.services', [])
 
 /**
- * A simple example service that returns some data.
+ * A service that detects a shake, then runs a callback function.
  */
-.factory('ShakeDetection', function($cordovaDeviceMotion, $cordovaDialogs) {
+services.factory('ShakeDetection', function($cordovaDeviceMotion, $cordovaDialogs) {
   var shake = {},
       watchId = null,
       options = {
@@ -68,4 +68,22 @@ angular.module('Booze.services', [])
     }
 
     return shake;
+});
+
+
+/**
+ * A service to retrieve cocktail.
+ */
+services.factory('CockTail', function($http) {
+  var CockTail = {},
+      cocktailsDataUrl = 'lib/data/cocktails.json';
+
+  CockTail.getOneRandom = function() {
+    $http.get(cocktailsDataUrl).success (function(data){
+      return data[Math.floor(Math.random() * data.length)];
+    });
+  }
+
+  return CockTail;
+
 });
