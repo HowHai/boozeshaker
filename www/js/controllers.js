@@ -1,6 +1,6 @@
 var controllers = angular.module('Booze.controllers', []);
 
-controllers.controller('MainCtrl', function($scope, ShakeDetection) {
+controllers.controller('MainCtrl', function($scope, ShakeDetection, CockTail) {
 
   $scope.cocktails = {};
 
@@ -19,6 +19,6 @@ controllers.controller('MainCtrl', function($scope, ShakeDetection) {
   }
 });
 
-controllers.controller('DetailCtrl', function($scope, $state) {
+controllers.controller('DetailCtrl', function($scope, $state, CockTail) {
 
 });

@@ -86,7 +86,15 @@ services.factory('CockTail', function($http) {
 
   CockTail.getOne = function(id) {
     $http.get(cocktailsDataUrl).success (function(data){
-      return data[Math.floor(Math.random() * data.length)];
+      var cocktailFound;
+
+      angular.forEach(data, function(cocktail) {
+        if (cocktail.id == id) {
+          cocktailFound = cocktail;
+        };
+      });
+
+      return cocktailFound;
     });
   }
 
