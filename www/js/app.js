@@ -28,13 +28,20 @@ angular.module('Booze', ['ionic', ,'ngCordova', 'Booze.controllers', 'Booze.serv
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-
-
     .state('home', {
       url: '/',
       templateUrl: 'templates/home.html',
       controller: 'MainCtrl'
     })
+    .state('cocktail', {
+      url: '/cocktail',
+      abstract: true
+    })
+    .state('cocktail.detail', {
+      url: '/:id',
+      templateUrl: 'templates/cocktail.html',
+      controller: 'DetailCtrl'
+    });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/');

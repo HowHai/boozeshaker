@@ -1,6 +1,6 @@
-angular.module('Booze.controllers', [])
+var controllers = angular.module('Booze.controllers', []);
 
-.controller('MainCtrl', function($scope, ShakeDetection) {
+controllers.controller('MainCtrl', function($scope, ShakeDetection) {
 
   $scope.cocktails = {};
 
@@ -17,4 +17,8 @@ angular.module('Booze.controllers', [])
   $scope.stopWatch = function() {
     ShakeDetection.stopWatch();
   }
-})
+});
+
+controllers.controller('DetailCtrl', function($scope, $state) {
+
+});
