@@ -79,25 +79,50 @@ services.factory('CockTail', function($http) {
       cocktailsDataUrl = 'lib/data/cocktails.json';
 
   CockTail.getOneRandom = function() {
-    $http.get(cocktailsDataUrl).success (function(data){
-      return data[Math.floor(Math.random() * data.length)];
+    var promise;
+
+    promise = $http.get(cocktailsDataUrl, {
+      transformResponse: returnOneRandomCocktail
+    }).success (function(data){
+      return data;
     });
+
+    return promise;
   }
 
   CockTail.getOne = function(id) {
-    $http.get(cocktailsDataUrl).success (function(data){
-      var cocktailFound;
+    var promise;
 
-      angular.forEach(data, function(cocktail) {
-        if (cocktail.id == id) {
-          cocktailFound = cocktail;
-        };
-      });
-
-      return cocktailFound;
+    promise = $http.get(cocktailsDataUrl, {
+      transformResponse: returnFoundCocktail
+    }).success (function(data){
+      return data;
     });
+
+    return promise;
+  }
+
+  function returnOneRandomCocktail(response) {
+    var result,
+        response = angular.fromJson(response);
+
+    result = response[Math.floor(Math.random() * response.length)];
+
+    return result;
+  }
+
+  function returnFoundCocktail(response) {
+    var result,
+    data = angular.fromJson(response);
+
+    angular.forEach(data, function(cocktail) {
+      if (cocktail.id == id) {
+        result = cocktail;
+      };
+    });
+
+    return result;
   }
 
   return CockTail;
-
 });

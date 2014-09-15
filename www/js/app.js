@@ -35,11 +35,12 @@ angular.module('Booze', ['ionic', ,'ngCordova', 'Booze.controllers', 'Booze.serv
     })
     .state('cocktail', {
       url: '/cocktail',
-      abstract: true
+      abstract: true,
+      templateUrl: 'templates/cocktail.html'
     })
     .state('cocktail.detail', {
       url: '/:id',
-      templateUrl: 'templates/cocktail.html',
+      templateUrl: 'templates/detail.html',
       controller: 'DetailCtrl'
     });
 

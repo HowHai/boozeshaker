@@ -1,6 +1,6 @@
 var controllers = angular.module('Booze.controllers', []);
 
-controllers.controller('MainCtrl', function($scope, ShakeDetection, CockTail) {
+controllers.controller('MainCtrl', function($scope, ShakeDetection, CockTail, $state) {
 
   $scope.cocktails = {};
 
@@ -17,8 +17,13 @@ controllers.controller('MainCtrl', function($scope, ShakeDetection, CockTail) {
   $scope.stopWatch = function() {
     ShakeDetection.stopWatch();
   }
+
+  $scope.getCocktail = function() {
+    // $state.go('cocktail.detail', {id: 1});
+  }
+
 });
 
-controllers.controller('DetailCtrl', function($scope, $state, CockTail) {
-
+controllers.controller('DetailCtrl', function($scope, $state, CockTail, $stateParams) {
+  // $scope.cockTail = CockTail.getOne($stateParams.id);
 });
