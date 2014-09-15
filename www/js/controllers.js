@@ -2,7 +2,9 @@ var controllers = angular.module('Booze.controllers', []);
 
 controllers.controller('MainCtrl', function($scope, ShakeDetection, CockTail, $state) {
 
-  // ShakeDetection.startWatch(myCallBack);
+  $scope.startWatch = function() {
+    ShakeDetection.startWatch(myCallBack);
+  }
 
   function myCallBack() {
     CockTail.getOneRandom().then(function(response) {
