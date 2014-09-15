@@ -94,7 +94,18 @@ services.factory('CockTail', function($http) {
     var promise;
 
     promise = $http.get(cocktailsDataUrl, {
-      transformResponse: returnFoundCocktail
+      transformResponse: function(response) {
+        var result,
+        data = angular.fromJson(response);
+
+        angular.forEach(data, function(cocktail) {
+          if (cocktail.id == id) {
+            result = cocktail;
+          };
+        });
+
+        return result;
+      }
     }).success (function(data){
       return data;
     });
@@ -107,19 +118,6 @@ services.factory('CockTail', function($http) {
         response = angular.fromJson(response);
 
     result = response[Math.floor(Math.random() * response.length)];
-
-    return result;
-  }
-
-  function returnFoundCocktail(response) {
-    var result,
-    data = angular.fromJson(response);
-
-    angular.forEach(data, function(cocktail) {
-      if (cocktail.id == id) {
-        result = cocktail;
-      };
-    });
 
     return result;
   }
