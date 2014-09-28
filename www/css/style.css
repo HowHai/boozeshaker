@@ -1,1 +1,53 @@
-/* Empty. Add your own CSS if you like */
+.title {
+	color: white;
+	text-align: center;
+	padding-top: 50px;
+	font-size: 37px;
+}
+
+.title-red {
+	color: red;
+}
+
+p {
+	text-align: center;
+	color: white;
+	font-size: 15px;
+}
+
+.background-home {
+	background-image: url(http://i.imgur.com/BFIa7TX.png);
+	background-size: cover;
+	height: 500px;
+}
+
+body {
+	background-color: red;
+}
+
+
+.list card {
+	background-color: black;
+}
+
+h3 {
+	padding-top: 50px;
+	text-align: center;
+	color: white;
+}
+
+.item {
+	margin-top: 30px;
+	background-color: black;
+	border: solid black;
+}
+
+.background {
+	background-color: black;
+}
+
+.icon {
+	color: white;
+}
+
+
