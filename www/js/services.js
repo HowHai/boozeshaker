@@ -3,11 +3,11 @@ var services = angular.module('Booze.services', [])
 /**
  * A service that detects a shake, then runs a callback function.
  */
-services.factory('ShakeDetection', function($cordovaDeviceMotion, $cordovaDialogs) {
+services.factory('ShakeDetection', function($cordovaDeviceMotion, $cordovaDialogs, CockTail, $state) {
   var shake = {},
       watchId = null,
       options = {
-        frequency: 3000
+        frequency: 100
       },
       previousAcceleration = { x: null, y: null, z: null },
       shakeCallBack = null;
@@ -47,8 +47,13 @@ services.factory('ShakeDetection', function($cordovaDeviceMotion, $cordovaDialog
         if (typeof (shakeCallBack) === "function") {
           shakeCallBack();
         }
+
         shake.stopWatch();
-        setTimeout(shake.startWatch, 1000);
+
+        setTimeout(function() {
+          shake.startWatch(myCallBack);
+        }, 3000);
+
         previousAcceleration = {
           x: null,
           y: null,
@@ -65,6 +70,15 @@ services.factory('ShakeDetection', function($cordovaDeviceMotion, $cordovaDialog
 
     // Handle errors here
     function handleError() {
+    }
+
+    // Callback
+    function myCallBack() {
+      CockTail.getOneRandom().then(function(response) {
+        var cocktail = response.data;
+
+        $state.go('cocktail.detail', {id: cocktail.id});
+      });
     }
 
     return shake;

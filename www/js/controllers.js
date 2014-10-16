@@ -1,10 +1,10 @@
 var controllers = angular.module('Booze.controllers', []);
 
-controllers.controller('MainCtrl', function($scope, ShakeDetection, CockTail, $state) {
+controllers.controller('MainCtrl', function($scope, ShakeDetection, CockTail, $state, $ionicPlatform) {
 
-  $scope.startWatch = function() {
+  $ionicPlatform.ready(function(){
     ShakeDetection.startWatch(myCallBack);
-  }
+  });
 
   function myCallBack() {
     CockTail.getOneRandom().then(function(response) {
