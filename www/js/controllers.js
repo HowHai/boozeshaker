@@ -15,12 +15,6 @@ controllers.controller('MainCtrl', function($scope, ShakeDetection, CockTail, $s
   }
 });
 
-controllers.controller('DetailCtrl', function($scope, $state, CockTail, $stateParams) {
-  $scope.cocktail = {};
-
-  CockTail.getOne($stateParams.id).then(function(response) {
-    var cocktail = response.data;
-
-    $scope.cocktail = cocktail;
-  });
+controllers.controller('DetailCtrl', function($scope, $state, CockTail, $stateParams, cocktailData) {
+    $scope.cocktail = cocktailData;
 });

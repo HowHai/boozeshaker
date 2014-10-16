@@ -41,7 +41,18 @@ angular.module('Booze', ['ionic', ,'ngCordova', 'Booze.controllers', 'Booze.serv
     .state('cocktail.detail', {
       url: '/:id',
       templateUrl: 'templates/detail.html',
-      controller: 'DetailCtrl'
+      controller: 'DetailCtrl',
+      resolve: {
+        cocktailData: function($stateParams, CockTail) {
+          var promise = CockTail.getOne($stateParams.id).then(function(response) {
+            var cocktail = response.data;
+
+            return cocktail;
+          });
+
+          return promise;
+        }
+      }
     });
 
   // if none of the above states are matched, use this as the fallback
